@@ -1,50 +1,82 @@
 function computerPlay() {
-    let randomNumber = Math.floor(Math.random() * 3);
-    if (randomNumber === 0) {
-        return 'rock';
+    //generate a random number from 1-100
+    let randomNum = Math.floor(Math.random() * 100 + 1);
+    // create control flow that sets computer choice based on number from 1-33, 34-66, 66-100
+    // with 1-33 rock, 34-66 paper, 67 -100 scissor
+    // return rock, paper, or scissor
+    if (randomNum <= 33) {
+      return "rock";
+    } else if (randomNum >= 34 && randomNum <= 66) {
+      return "paper";
+    } else {
+      return "scissor";
     }
-    else if (randomNumber === 1) {
-        return 'paper';
-    } 
-    else if (randomNumber === 2) {
-        return 'scissors';
+  }
+  
+  function playerPlay() {
+  
+    let response = prompt("please type rock, paper, or scissor!");
+    return response.toLowerCase();
+  }
+  
+  function singleRound(playerSelection, computerSelection) {
+  
+    let result = checkWinner(playerSelection, computerSelection);
+  
+    if (result === "tie") {
+      return `Tie! ${playerSelection} ties ${computerSelection}.`;
     }
-
-}
-function playRound(playerSelection, computerSelection) {
-    if (playerSelection == 'rock' && computerSelection == 'rock') {
-        return 'Tie! You both chose rock.';
+  
+    let msg = result
+      ? `You win! ${playerSelection} beats ${computerSelection}.`
+      : `You lose! ${computerSelection} beats ${playerSelection}.`;
+  
+    return msg;
+  }
+  
+  function checkWinner(playerpick, computerpick) {
+    if (playerpick === computerpick) {
+      return "tie";
     }
-    else if (playerSelection == 'rock' && computerSelection == 'paper') {
-        return 'You lose! Paper beats rock.';
+  
+    if (playerpick === "rock" && computerpick === "scissor") {
+      return true;
     }
-    else if (playerSelection == 'rock' && computerSelection == 'scissors') {
-        return 'You win! Rock beats paper. ';
+  
+    if (playerpick === "rock" && computerpick === "paper") {
+      return false;
     }
-    if (playerSelection == 'paper' && computerPlay() == 'paper') {
-        return 'Tie! You both chose paper.';
+  
+    if (playerpick === "paper" && computerpick === "scissor") {
+      return false;
     }
-    else if (playerSelection == 'paper' && computerPlay() == 'rock') {
-        return 'You win! Paper beats rock.';
+  
+    if (playerpick === "paper" && computerpick === "rock") {
+      return true;
     }
-    else if (playerSelection == 'paper' && computerPlay() == 'scissors') {
-        return 'You lose! Scissors beats paper.';
+  
+    if (playerpick === "scissor" && computerpick === "rock") {
+      return false;
     }
-    if (playerSelection == 'scissors' && computerPlay() == 'scissors') {
-        return 'Tie! You both chose scissors.';
+  
+    if (playerpick === "scissor" && computerpick === "paper") {
+      return true;
     }
-    else if (playerSelection == 'scissors' && computerPlay() == 'rock') {
-        return 'You lose! Rock beats scissors.';
+  }
+  
+  function game() {
+    let playerSelection = playerPlay();
+    let computerSelection = computerPlay();
+    console.log(singleRound(playerSelection, computerSelection));
+  }
+  
+  const timer = (ms) => new Promise((res) => setTimeout(res, ms));
+  
+  async function runGame() {
+    for (var i = 0; i < 5; i++) {
+      game();
+      await timer(1500); 
     }
-    else if (playerSelection == 'scissors' && computerPlay() == 'paper') {
-        return 'You win! Scissors beats paper';
-    }
-}
-function game() {
-    
-}
-const playerSelection = 'rock';
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
-
-
+  }
+  
+  runGame();
