@@ -1,33 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
 <head>
-  <meta charset="utf-8">
-  <title></title>
-  <meta name="author" content="">
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link href="styles.css" rel="stylesheet">
+  <title>Rock Paper Scissors</title>
 </head>
-
 <body>
-<div class="selections">
-  <button class="selection" data-selection="rock">Rock</button>
-  <button class="selection" data-selection="paper">Paper</button>
-  <button class="selection" data-selection="scissors">Scissors</button>
-</div>
-<div class="results">
-    <div>You
-      <span class="result-score">0</span>
-    </div>
-    <div>Computer
-      <span class="result-score">0</span>
-    </div>
-    <!--<div class="result-selection winner">Rock</div>
-    <div class="result-selection">Scissors</div> -->
+  <div style="margin-bottom: 20px">
+    <input type="button" value="rock"></input>
+    <input type="button" value="paper"></input>
+    <input type="button" value="scissors"></input>
   </div>
-  <script src="script.js"></script>
+  <div id="result"></div>
+  <script src="rps.js"></script>
 </body>
-
 </html>
